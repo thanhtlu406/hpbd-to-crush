@@ -90,13 +90,17 @@
   .balloon::after {
     content: "";
     position: absolute;
-    bottom: -60px;
+    bottom: -65px;
     left: 50%;
-    width: 2px;
-    height: 60px;
-    background: rgba(0, 0, 0, 0.15);
+    width: 40px;
+    height: 80px;
     transform: translateX(-50%);
-    border-radius: 2px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('data:image/svg+xml;utf8,\
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="80">\
+        <path d="M20 0 C10 20, 30 40, 20 80" stroke="rgba(0,0,0,0.15)" stroke-width="2" fill="none" />\
+      </svg>');
   }
 
   /* Balloon animation — fade-out from 95% */
