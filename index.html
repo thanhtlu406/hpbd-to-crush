@@ -27,8 +27,8 @@
 
   p {
     color: #555;
-    font-size: 1.1em;
-    margin-top: 10px;
+    font-size: 1.25em;
+    margin-top: 12px;
     text-align: center;
   }
 
@@ -176,11 +176,11 @@
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (7 + Math.random() * 4) + 's';
+    heart.style.animationDuration = (12 + Math.random() * 5) + 's';
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 11000);
+    setTimeout(() => heart.remove(), 21000);
   }
-  setInterval(createHeart, 400);
+  setInterval(createHeart, 900);
 
   /* Create floating balloons */
   function createBalloon() {
@@ -188,11 +188,11 @@
     balloon.classList.add('balloon');
     balloon.style.left = Math.random() * 100 + 'vw';
     balloon.style.background = `hsl(${Math.random() * 360}, 70%, 75%)`;
-    balloon.style.animationDuration = (10 + Math.random() * 4) + 's';
+    balloon.style.animationDuration = (18 + Math.random() * 6) + 's';
     document.body.appendChild(balloon);
-    setTimeout(() => balloon.remove(), 13000);
+    setTimeout(() => balloon.remove(), 29000);
   }
-  setInterval(createBalloon, 1200);
+  setInterval(createBalloon, 2000);
 
   /* Play music when button is clicked */
   function playMusic() {
