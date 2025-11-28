@@ -14,8 +14,9 @@
 <!-- Fake preview title -->
 <meta property="og:title" content="A little something for you 🎁">
 <meta property="og:description" content="Just something small, hope you like it 💗">
-<meta property="og:image" content="https://www.pinterest.com/pin/21673641952736517/">
-<meta property="og:url" content="https://4u-today.vercell.app">
+<meta property="og:image" content="https://i.imgur.com/It5a7dK.png">
+<meta property="og:url" content="https://4u-today.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
   body {
@@ -37,7 +38,7 @@
     animation: pulse 1.5s infinite;
   }
 
-  p {
+  #wish {
     color: #555;
     font-size: 1.25em;
     margin-top: 12px;
@@ -64,7 +65,7 @@
     height: 20px;
     background: #ffb6c1;
     transform: rotate(45deg);
-    animation: floatUp 9s linear infinite;
+    animation: floatUp 12s linear infinite;
     opacity: 0.8;
   }
   .heart::before, .heart::after {
@@ -78,7 +79,6 @@
   .heart::before { top: -10px; left: 0; }
   .heart::after { left: -10px; top: 0; }
 
-  /* Heart animation — slow fade-out from 95% */
   @keyframes floatUp {
     0%   { transform: translateY(0) rotate(45deg); opacity: 1; }
     85%  { transform: translateY(-1100px) rotate(45deg); opacity: 1; }
@@ -95,7 +95,7 @@
     height: 80px;
     background: radial-gradient(circle at 30% 30%, #ff66b2, #ff3385);
     border-radius: 50% 50% 45% 45%;
-    animation: balloonRise 16s linear infinite;
+    animation: balloonRise 20s linear infinite;
   }
 
   /* Balloon string */
@@ -115,14 +115,13 @@
       </svg>');
   }
 
-  /* Balloon animation — fade-out from 95% */
   @keyframes balloonRise {
     0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
     50%  { transform: translateY(-600px) rotate(3deg); opacity: 1; }
     85%  { transform: translateY(-1200px) rotate(-3deg); opacity: 1; }
     90%  { opacity: 0.7; }
     95%  { opacity: 0.4; }
-    100% { transform: translateY(-1400px) rotate(0deg); opacity: 0; }
+    100% { transform: translateY(-1500px) rotate(0deg); opacity: 0; }
   }
 
   button {
@@ -143,27 +142,11 @@
 
   /* Responsive for mobile */
   @media (max-width: 480px) {
-    h1 {
-      font-size: 1.8em;
-      text-align: center;
-      padding: 0 10px;
-      line-height: 1.3em;
-    }
-
-    p {
-      font-size: 1.1em;
-      padding: 0 15px;
-    }
-
-    .gif {
-      width: 160px;
-    }
-
-    button {
-      font-size: 0.9em;
-      padding: 10px 20px;
-    }
-  }  
+    h1 { font-size: 1.8em; line-height: 1.3em; }
+    #wish { font-size: 1.15em; padding: 0 15px; }
+    .gif { width: 160px; }
+    button { font-size: 0.9em; padding: 10px 20px; }
+  }
 </style>
 </head>
 
@@ -172,18 +155,17 @@
   <h1>🎉 Happy Birthday Ánh 🎉</h1>
 
   <img class="gif" 
-       src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXZhNGNuajcxN2J6d2VqeWZjdXlia3UxcmFhNG4xZDc0d2JoY3U1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/85NgDQW1dszTIzxmXu/giphy.gif" 
+       src="https://media0.giphy.com/media/85NgDQW1dszTIzxmXu/giphy.gif"
        alt="Birthday GIF">
 
-  <p>Chúc Ánh tuổi mới thật nhiều sức khỏe, bình yên và luôn gặp những điều dễ thương khiến em mỉm cười mỗi ngày 💖</p>
+  <p id="wish"></p>
 
   <button onclick="playMusic()">💗 Play Birthday Song 💗</button>
 
-  <!-- Local mp3 file -->
   <audio id="music" autoplay loop muted hidden src="./HappyBirthdayToYou.mp3"></audio>
 
 <script>
-  /* Create floating hearts */
+  /* Hearts */
   function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
@@ -194,28 +176,46 @@
   }
   setInterval(createHeart, 900);
 
-  /* Create floating balloons */
+  /* Balloons */
   function createBalloon() {
     const balloon = document.createElement('div');
     balloon.classList.add('balloon');
     balloon.style.left = Math.random() * 100 + 'vw';
     balloon.style.background = `hsl(${Math.random() * 360}, 70%, 75%)`;
-    balloon.style.animationDuration = (18 + Math.random() * 6) + 's';
+    balloon.style.animationDuration = (20 + Math.random() * 6) + 's';
     document.body.appendChild(balloon);
     setTimeout(() => balloon.remove(), 29000);
   }
   setInterval(createBalloon, 2000);
 
-  /* Play music when button is clicked */
+  /* TYPEWRITER EFFECT */
+  const wishText = "Chúc Ánh tuổi mới thật nhiều sức khỏe, bình yên và luôn gặp những điều dễ thương khiến em mỉm cười mỗi ngày 💖";
+
+  function typeWish() {
+    const wish = document.getElementById("wish");
+    wish.textContent = "";
+    let index = 0;
+
+    function typeChar() {
+      if (index < wishText.length) {
+        wish.textContent += wishText.charAt(index);
+        index++;
+        setTimeout(typeChar, 120);
+      }
+    }
+    typeChar();
+  }
+
+  /* Play music */
   function playMusic() {
     const music = document.getElementById('music');
-    music.muted = false;       // unmute audio
+    music.muted = false;
     music.play()
       .then(() => {
         alert("🎶 Sinh nhật vui vẻ nha bạn iu! 🎶");
+        typeWish();
       })
       .catch(err => {
-        console.log("Music playback blocked:", err);
         alert("Your browser blocked audio autoplay. Please tap again 💖");
       });
   }
