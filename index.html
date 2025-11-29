@@ -272,6 +272,35 @@
   }
   setInterval(createBalloon, 2500);
 
+  let heartInterval, balloonInterval;
+  
+  function startEffects() {
+    heartInterval = setInterval(createHeart, 900);
+    balloonInterval = setInterval(createBalloon, 2000);
+  }
+  
+  function stopEffects() {
+    clearInterval(heartInterval);
+    clearInterval(balloonInterval);
+  }
+  
+  // Xóa tất cả trái tim & bóng đang tồn tại (tránh bị dồn khi quay lại tab)
+  function clearEffects() {
+    document.querySelectorAll('.heart, .balloon').forEach(el => el.remove());
+  }
+  
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopEffects();        // Tab bị ẩn → ngừng spawn
+    } else {
+      clearEffects();       // Xóa hiệu ứng bị dồn
+      startEffects();       // Spawn trở lại bình thường
+    }
+  });
+  
+  // Bắt đầu lúc load trang
+  startEffects();  
+
   /* TYPEWRITER */
   const wishText = "Chúc Ánh tuổi mới thật nhiều sức khỏe, bình yên và luôn gặp những điều dễ thương khiến em mỉm cười mỗi ngày 💖";
 
