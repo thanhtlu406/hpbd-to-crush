@@ -64,8 +64,8 @@
     height: 20px;
     background: #ffb6c1;
     transform: rotate(45deg);
-    animation: floatUp 12s linear infinite;
     opacity: 0.8;
+    animation: floatUp linear;
   }
   .heart::before, .heart::after {
     content: "";
@@ -94,7 +94,7 @@
     height: 80px;
     background: radial-gradient(circle at 30% 30%, #ff66b2, #ff3385);
     border-radius: 50% 50% 45% 45%;
-    animation: balloonRise 20s linear infinite;
+    animation: balloonRise linear;
   }
 
   .balloon::after {
@@ -254,11 +254,11 @@
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (14 + Math.random() * 5) + 's';
+    heart.style.animationDuration = (10 + Math.random() * 5) + 's';
     document.body.appendChild(heart);
     heart.addEventListener("animationend", () => heart.remove());
   }
-  setInterval(createHeart, 1000);
+  setInterval(createHeart, 1200);
 
   /* Balloons */
   function createBalloon() {
@@ -266,11 +266,11 @@
     balloon.classList.add('balloon');
     balloon.style.left = Math.random() * 100 + 'vw';
     balloon.style.background = `hsl(${Math.random() * 360}, 70%, 75%)`;
-    balloon.style.animationDuration = (20 + Math.random() * 6) + 's';
+    balloon.style.animationDuration = (18 + Math.random() * 6) + 's';
     document.body.appendChild(balloon);
     balloon.addEventListener("animationend", () => balloon.remove());
   }
-  setInterval(createBalloon, 2000);
+  setInterval(createBalloon, 2500);
 
   /* TYPEWRITER */
   const wishText = "Chúc Ánh tuổi mới thật nhiều sức khỏe, bình yên và luôn gặp những điều dễ thương khiến em mỉm cười mỗi ngày 💖";
