@@ -256,7 +256,7 @@
     heart.style.left = Math.random() * 100 + 'vw';
     heart.style.animationDuration = (14 + Math.random() * 5) + 's';
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 21000);
+    heart.addEventListener("animationend", () => heart.remove());
   }
   setInterval(createHeart, 1000);
 
@@ -268,7 +268,7 @@
     balloon.style.background = `hsl(${Math.random() * 360}, 70%, 75%)`;
     balloon.style.animationDuration = (20 + Math.random() * 6) + 's';
     document.body.appendChild(balloon);
-    setTimeout(() => balloon.remove(), 29000);
+    balloon.addEventListener("animationend", () => balloon.remove());
   }
   setInterval(createBalloon, 2000);
 
