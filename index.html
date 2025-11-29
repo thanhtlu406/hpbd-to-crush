@@ -249,16 +249,16 @@
   `;
   document.head.appendChild(style);
 
-  /* Hearts */
+ /* Hearts */
   function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (12 + Math.random() * 5) + 's';
+    heart.style.animationDuration = (14 + Math.random() * 5) + 's';
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 21000);
   }
-  setInterval(createHeart, 900);
+  setInterval(createHeart, 1000);
 
   /* Balloons */
   function createBalloon() {
