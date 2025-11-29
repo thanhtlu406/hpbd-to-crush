@@ -11,11 +11,12 @@
   }, 500);
 </script>
 
-<!-- Fake preview title khi share link -->
+<!-- Fake preview title -->
 <meta property="og:title" content="A little something for you 🎁">
 <meta property="og:description" content="Just something small, hope you like it 💗">
 <meta property="og:image" content="https://i.imgur.com/It5a7dK.png">
 <meta property="og:url" content="https://4u-today.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
   body {
@@ -97,6 +98,7 @@
     animation: balloonRise 20s linear infinite;
   }
 
+  /* Balloon string */
   .balloon::after {
     content: "";
     position: absolute;
@@ -138,6 +140,7 @@
     background: #ff3385;
   }
 
+  /* Responsive for mobile */
   @media (max-width: 480px) {
     h1 { font-size: 1.8em; line-height: 1.3em; }
     #wish { font-size: 1.15em; padding: 0 15px; }
@@ -149,19 +152,6 @@
 
 <body>
 
-<!-- 💌 THIỆP ĐÓNG -->
-<div id="card" onclick="openCard()">
-  <div class="card-inner">
-    <div class="card-front">
-      <h2>💌 For You</h2>
-    </div>
-    <div class="card-back"></div>
-  </div>
-</div>
-
-<!-- 🎉 NỘI DUNG SAU KHI MỞ -->
-<div id="content" style="display:none; flex-direction:column; align-items:center;">
-
   <h1>🎉 Happy Birthday Ánh 🎉</h1>
 
   <img class="gif" 
@@ -171,84 +161,10 @@
   <p id="wish"></p>
 
   <button onclick="playMusic()">💗 Play Birthday Song 💗</button>
-</div>
 
-<audio id="music" autoplay loop muted hidden src="./HappyBirthdayToYou.mp3"></audio>
+  <audio id="music" autoplay loop muted hidden src="./HappyBirthdayToYou.mp3"></audio>
 
 <script>
-
-  /* THIỆP OPEN EFFECT */
-  function openCard() {
-    const card = document.getElementById("card");
-    const content = document.getElementById("content");
-
-    card.classList.add("open");
-
-    setTimeout(() => {
-      card.style.display = "none";
-      content.style.display = "flex";
-    }, 1200);
-  }
-
-  /* Add thiệp style */
-  const style = document.createElement('style');
-  style.innerHTML = `
-    #card {
-      width: 260px;
-      height: 190px;
-      background: #ffb3d9;
-      border-radius: 14px;
-      cursor: pointer;
-      perspective: 1200px;
-      margin-top: 40px;
-      box-shadow: 0 8px 20px rgba(255, 150, 200, 0.25);
-      transition: transform 0.2s ease;
-    }
-  
-    #card:hover {
-      transform: translateY(-4px);
-    }
-  
-    .card-inner {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-      transform-style: preserve-3d;
-    }
-  
-    #card.open .card-inner {
-      transform: rotateY(-180deg);
-    }
-  
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 14px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: "Poppins";
-    }
-  
-    .card-front {
-      background: linear-gradient(135deg, #ff66b2, #ff85c9);
-      color: white;
-      font-size: 1.5em;
-      font-weight: 600;
-      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.25);
-    }
-  
-    .card-back {
-      background: #fff3fa;
-      transform: rotateY(180deg);
-      box-shadow: inset 0 0 25px rgba(255, 180, 220, 0.25);
-    }
-  `;
-  document.head.appendChild(style);
-
   /* Hearts */
   function createHeart() {
     const heart = document.createElement('div');
@@ -272,7 +188,7 @@
   }
   setInterval(createBalloon, 2000);
 
-  /* TYPEWRITER */
+  /* TYPEWRITER EFFECT */
   const wishText = "Chúc Ánh tuổi mới thật nhiều sức khỏe, bình yên và luôn gặp những điều dễ thương khiến em mỉm cười mỗi ngày 💖";
 
   function typeWish() {
@@ -290,7 +206,7 @@
     typeChar();
   }
 
-  /* Music */
+  /* Play music */
   function playMusic() {
     const music = document.getElementById('music');
     music.muted = false;
@@ -299,7 +215,7 @@
         alert("🎶 Sinh nhật vui vẻ nha bạn iu! 🎶");
         typeWish();
       })
-      .catch(() => {
+      .catch(err => {
         alert("Your browser blocked audio autoplay. Please tap again 💖");
       });
   }
