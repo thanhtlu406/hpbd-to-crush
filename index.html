@@ -275,20 +275,27 @@
   /* TYPEWRITER */
   const wishText = "Chúc Ánh tuổi mới thật nhiều sức khỏe, bình yên và luôn gặp những điều dễ thương khiến em mỉm cười mỗi ngày 💖";
 
-  function typeWish() {
+let typeTimer = null; // lưu timer cũ
+
+function typeWish() {
     const wish = document.getElementById("wish");
     wish.textContent = "";
+
+    // Nếu đang gõ dở, hủy hết timer để tránh lỗi Unicode
+    if (typeTimer) clearTimeout(typeTimer);
+
     let index = 0;
 
     function typeChar() {
-      if (index < wishText.length) {
-        wish.textContent += wishText.charAt(index);
-        index++;
-        setTimeout(typeChar, 120);
-      }
+        if (index < wishText.length) {
+            wish.textContent += wishText.charAt(index);
+            index++;
+            typeTimer = setTimeout(typeChar, 120); 
+        }
     }
+
     typeChar();
-  }
+}
 
   /* Music */
   function playMusic() {
